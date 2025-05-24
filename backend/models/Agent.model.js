@@ -6,10 +6,18 @@ const taskSchema = new mongoose.Schema({
         required: true
     },
     description: String,
+    assignedAt: {
+        type: Date,
+        default: Date.now
+    },
     completed: {
         type: Boolean,
         default: false
     },
+    completedAt:{
+        type: Date,
+        default: null
+    }
 });
 
 const agentSchema = new mongoose.Schema({

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const AgentDashboard = () => {
   const { id } = useParams();
@@ -12,8 +12,8 @@ const AgentDashboard = () => {
   // Logout function
   const handleLogout = () => {
     // localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    navigate('/agents/login');
+    localStorage.removeItem("id");
+    navigate("/agents/login");
   };
 
   const fetchAgent = async () => {
@@ -21,7 +21,7 @@ const AgentDashboard = () => {
       const res = await axios.get(`http://localhost:3000/api/agents/${id}`);
       setAgent(res.data.agent);
     } catch (error) {
-      console.error('Failed to fetch agent:', error);
+      console.error("Failed to fetch agent:", error);
     } finally {
       setLoading(false);
     }
@@ -29,26 +29,28 @@ const AgentDashboard = () => {
 
   const markTaskComplete = async (taskIndex) => {
     try {
-      await axios.post(`http://localhost:3000/api/agents/${id}/tasks/${taskIndex}`);
+      await axios.post(
+        `http://localhost:3000/api/agents/${id}/tasks/${taskIndex}`
+      );
       fetchAgent();
     } catch (error) {
-      console.error('Error marking task as complete:', error);
+      console.error("Error marking task as complete:", error);
     }
   };
-
 
   useEffect(() => {
     // const token = localStorage.getItem('token');
     const localId = localStorage.getItem("id");
     if (id !== localId) {
-      navigate('/agents/login');
+      navigate("/agents/login");
     } else {
       fetchAgent();
     }
   }, [id, navigate]);
 
   if (loading) return <div className="text-center p-4">Loading...</div>;
-  if (!agent) return <div className="text-center text-red-500">Agent not found</div>;
+  if (!agent)
+    return <div className="text-center text-red-500">Agent not found</div>;
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
@@ -73,9 +75,18 @@ const AgentDashboard = () => {
             <li key={index} className="bg-white shadow p-4 rounded-lg">
               <h3 className="font-semibold text-blue-600">{task.title}</h3>
               <p className="text-gray-700">{task.description}</p>
+
               <p className="text-sm text-gray-500">
-                Completed: {task.completed ? '✅ Yes' : '❌ No'}
+                Assigned At: {new Date(task.assignedAt).toLocaleString()}
               </p>
+
+              <p className="text-sm text-gray-500">
+                Completed: {task.completed ? "✅ Yes" : "❌ No"}
+                {task.completed && (
+                  <> (on {new Date(task.completedAt).toLocaleString()})</>
+                )}
+              </p>
+
               {!task.completed && (
                 <button
                   onClick={() => markTaskComplete(index)}

@@ -129,11 +129,13 @@ const markTaskCompleted = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Agent not found' });
     }
 
-    if (!agent.tasks[taskIndex]) {
+    const task = agent.tasks[taskIndex];
+    if (!task) {
       return res.status(400).json({ success: false, message: 'Task not found' });
     }
 
-    agent.tasks[taskIndex].completed = true;
+    task.completed = true;
+    task.completedAt = new Date();
     await agent.save();
 
     res.json({ success: true, message: 'Task marked as complete' });
@@ -141,5 +143,6 @@ const markTaskCompleted = async (req, res) => {
     res.status(500).json({ success: false, message: 'Error updating task', error });
   }
 };
+
 
 export { agentRegister, agentLogin, getAllAgents, addTask, getAgent, markTaskCompleted };

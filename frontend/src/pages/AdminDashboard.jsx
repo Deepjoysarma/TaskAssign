@@ -89,17 +89,36 @@ const AdminDashboard = () => {
               <p className="text-gray-500 italic">No tasks assigned</p>
             ) : (
               <ul className="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                {agent.tasks.map((task, i) => (
-                  <li key={i}>
-                    <span className="font-medium">{task.title}</span> –{" "}
-                    {task.description}{" "}
-                    <span
-                      className={`ml-2 text-sm font-semibold ${
-                        task.completed ? "text-green-600" : "text-red-500"
-                      }`}
-                    >
-                      ({task.completed ? "Completed" : "Pending"})
-                    </span>
+                {agent.tasks.map((task, index) => (
+                  <li
+                    key={index}
+                    className="p-3 border border-gray-200 rounded"
+                  >
+                    <p className="font-medium text-blue-700">{task.title}</p>
+                    <p className="text-sm text-gray-700">{task.description}</p>
+
+                    <p className="text-xs text-gray-500">
+                      Assigned At:{" "}
+                      {task.assignedAt
+                        ? new Date(task.assignedAt).toLocaleString()
+                        : "N/A"}
+                    </p>
+
+                    <p className="text-xs text-gray-500">
+                      Completed:{" "}
+                      {task.completed ? (
+                        <>
+                          ✅ Yes
+                          <br />
+                          Completed At:{" "}
+                          {task.completedAt
+                            ? new Date(task.completedAt).toLocaleString()
+                            : "N/A"}
+                        </>
+                      ) : (
+                        "❌ No"
+                      )}
+                    </p>
                   </li>
                 ))}
               </ul>
