@@ -21,3 +21,8 @@ A full-stack application that allows an admin to manage and assign tasks to agen
 **Backend**: Node.js, Express.js  
 **Database**: MongoDB  
 **Authentication**: JWT (JSON Web Token)
+
+## For running the project
+
+**Frontend**: npm run dev
+**Backend**: npm start
