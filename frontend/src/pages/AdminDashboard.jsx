@@ -23,7 +23,7 @@ const AdminDashboard = () => {
       const res = await axios.get("http://localhost:3000/api/agents/all");
       setAgents(res.data.agents);
     } catch (error) {
-      console.error("Error fetching agents:", error);
+      // console.error("Error fetching agents:", error);
     }
   };
 
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
       fetchAgents();
     } catch (error) {
-      console.error("Error adding task:", error);
+      // console.error("Error adding task:", error);
       alert("Failed to add task");
     }
   };

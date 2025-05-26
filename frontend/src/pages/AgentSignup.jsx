@@ -18,7 +18,7 @@ const AgentSignup = () => {
                 email,
                 password
             });
-            console.log(response.data);
+            // console.log(response.data);
 
             // localStorage.setItem('token', response.data.token);
             localStorage.setItem('id', response.data.agentId);
@@ -29,7 +29,7 @@ const AgentSignup = () => {
             setPassword('');
 
         } catch (error) {
-            console.error('Signup error:', error);
+            // console.error('Signup error:', error);
         }
     }
 

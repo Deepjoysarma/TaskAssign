@@ -21,7 +21,7 @@ const AgentDashboard = () => {
       const res = await axios.get(`http://localhost:3000/api/agents/${id}`);
       setAgent(res.data.agent);
     } catch (error) {
-      console.error("Failed to fetch agent:", error);
+      // console.error("Failed to fetch agent:", error);
     } finally {
       setLoading(false);
     }
@@ -34,7 +34,7 @@ const AgentDashboard = () => {
       );
       fetchAgent();
     } catch (error) {
-      console.error("Error marking task as complete:", error);
+      // console.error("Error marking task as complete:", error);
     }
   };
 

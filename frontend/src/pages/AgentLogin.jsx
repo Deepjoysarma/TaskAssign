@@ -15,12 +15,12 @@ const AgentLogin = () => {
         email,
         password,
       });
-      console.log(response.data);
+      // console.log(response.data);
       // localStorage.setItem('token', response.data.token);
       localStorage.setItem('id', response.data.agentId);
       navigate(`/agent/dashboard/${response.data.agentId}`);
     } catch (error) {
-      console.error('Login error:', error);
+      // console.error('Login error:', error);
     }
   };
 

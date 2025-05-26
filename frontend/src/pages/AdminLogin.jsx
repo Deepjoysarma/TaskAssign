@@ -15,14 +15,14 @@ const AdminLogin = () => {
         email,
         password,
       });
-      console.log(response.data);
+      // console.log(response.data);
       if(response.data.success) {
         // localStorage.setItem('token', response.data.token);
         localStorage.setItem('role', 'admin');
         navigate('/admin/dashboard');
       } else alert('Invalid Password');
     } catch (error) {
-      console.error('Admin login error:', error);
+      // console.error('Admin login error:', error);
     }
   };
 
