@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
   const fetchAgents = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/agents/all");
+      const res = await axios.get("https://taskassign-backend.onrender.com/api/agents/all");
       setAgents(res.data.agents);
     } catch (error) {
       // console.error("Error fetching agents:", error);
@@ -36,7 +36,7 @@ const AdminDashboard = () => {
     }
 
     try {
-      await axios.post("http://localhost:3000/api/admin/add-agent-task", {
+      await axios.post("https://taskassign-backend.onrender.com/api/admin/add-agent-task", {
         agentId: selectedAgentId,
         title,
         description,

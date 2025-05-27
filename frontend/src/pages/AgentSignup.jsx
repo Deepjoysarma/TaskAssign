@@ -13,7 +13,7 @@ const AgentSignup = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/api/agents/register', {
+            const response = await axios.post('https://taskassign-backend.onrender.com/api/agents/register', {
                 username,
                 email,
                 password

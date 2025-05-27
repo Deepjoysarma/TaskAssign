@@ -18,7 +18,7 @@ const AgentDashboard = () => {
 
   const fetchAgent = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/agents/${id}`);
+      const res = await axios.get(`https://taskassign-backend.onrender.com/api/agents/${id}`);
       setAgent(res.data.agent);
     } catch (error) {
       // console.error("Failed to fetch agent:", error);
@@ -30,7 +30,7 @@ const AgentDashboard = () => {
   const markTaskComplete = async (taskIndex) => {
     try {
       await axios.post(
-        `http://localhost:3000/api/agents/${id}/tasks/${taskIndex}`
+        `https://taskassign-backend.onrender.com/api/agents/${id}/tasks/${taskIndex}`
       );
       fetchAgent();
     } catch (error) {
